@@ -434,7 +434,12 @@
       <h2>&#129309; Join as a Tester</h2>
       <p class="form-sub">Share your details and I'll send you the download link</p>
 
-      <form id="tester-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="tester-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="947bd1f4-d93e-4bce-85cd-32b3c69dc8b0">
+        <input type="hidden" name="subject" value="New RamadanTracker26 Tester Signup!">
+        <input type="hidden" name="from_name" value="RamadanTracker26 Landing">
+        <input type="checkbox" name="botcheck" style="display: none;">
+
         <div class="form-group">
           <label for="name">Your Name *</label>
           <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -444,6 +449,12 @@
           <label for="email">Gmail ID (used on Play Store) *</label>
           <input type="email" id="email" name="email" placeholder="yourname@gmail.com" required>
           <p class="hint">This must be the Gmail you use on Google Play Store</p>
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp Number *</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+91 98765 43210" required>
+          <p class="hint">I'll send you the Play Store download link on WhatsApp</p>
         </div>
 
         <div class="form-group">
@@ -460,17 +471,15 @@
           <input type="text" id="feedback" name="feedback" placeholder="e.g. Excited to try it!">
         </div>
 
-        <input type="hidden" name="_subject" value="New RamadanTracker26 Tester Signup!">
-        <input type="hidden" name="_template" value="table">
-
         <button type="submit" class="submit-btn">&#128233; Join Testing — Send My Details</button>
-        <p class="form-note">Your email is only used to add you to Play Store testing — nothing else.</p>
+        <p class="form-note">This is not spam — the app is personally developed by Shaid. Your details are only used to add you as a tester and send the download link.</p>
       </form>
 
       <div class="success-msg" id="success-msg">
         <div class="check">&#9989;</div>
         <h3>JazakAllahu Khairan!</h3>
-        <p>Your details have been received. I'll add you as a tester and send the download link to your Gmail soon, In Sha Allah!</p>
+        <p>Your details have been received. I'll send the Play Store download link to your WhatsApp and Gmail soon, In Sha Allah!</p>
+        <p style="color: var(--text-dim); font-size: 12px; margin-top: 12px;">This app is personally developed by Shaid — not spam, just a brother building something for the Ummah.</p>
       </div>
     </div>
 
@@ -513,13 +522,17 @@
       btn.disabled = true;
 
       try {
-        const res = await fetch(form.action, {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
         });
 
-        if (res.ok) {
+        const json = await res.json();
+        if (json.success) {
           form.style.display = 'none';
           successMsg.style.display = 'block';
         } else {
