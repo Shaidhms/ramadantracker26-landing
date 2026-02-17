@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RamadanTracker26 — Join the Testing</title>
+  <meta name="description" content="RamadanTracker26 - Your Complete Ramadan Companion. Track fasting, prayers, Quran & more. Join our testing program!">
+  <meta property="og:title" content="RamadanTracker26 — Join the Testing">
+  <meta property="og:description" content="Help bring a beautiful Ramadan tracker app to Google Play Store. Join 20 testers needed!">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #060E06;
+      --bg-card: #0A1A0A;
+      --bg-card2: #0D1F0D;
+      --border: #1E3A1E;
+      --border2: #2A4A2A;
+      --gold: #C9A84C;
+      --gold-light: #E8C86C;
+      --green: #8AAA8A;
+      --green-bright: #4ECB71;
+      --text: #d0d0d0;
+      --text-muted: #8A8A8A;
+      --text-dim: #5A7A5A;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Stars background */
+    .stars {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: twinkle 3s infinite alternate;
+    }
+    @keyframes twinkle { 0% { opacity: 0.1; } 100% { opacity: 0.5; } }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .hero-icon { font-size: 56px; margin-bottom: 8px; }
+    .hero h1 {
+      color: var(--gold);
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .hero .tagline {
+      color: var(--green);
+      font-size: 16px;
+      margin-top: 6px;
+    }
+    .hero .sub {
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 32px;
+    }
+    .section-label {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    /* Intro */
+    .intro {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .intro .greeting {
+      color: var(--gold);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .intro p {
+      color: #b0b0b0;
+      font-size: 14px;
+    }
+
+    /* Feature cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    .feat-card {
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .feat-card:hover { border-color: var(--border2); }
+    .feat-icon {
+      font-size: 22px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .feat-card h3 { color: var(--green); font-size: 13px; font-weight: 500; margin: 0; }
+
+    /* All features list */
+    .all-features {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+    }
+    .all-features span {
+      color: var(--text-dim);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    /* Help section */
+    .help-box {
+      background: linear-gradient(135deg, #1a2a1a, #0d1f0d);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 32px;
+    }
+    .help-box h2 {
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .help-box p {
+      color: #b0b0b0;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .highlight { color: var(--gold-light); font-weight: 600; }
+
+    /* Warning box */
+    .warning-box {
+      background: #1a1a0d;
+      border: 1px solid #3A3A1E;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 32px;
+    }
+    .warning-box h3 {
+      color: var(--gold-light);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .warning-box ul {
+      color: #b0b0b0;
+      font-size: 13px;
+      padding-left: 18px;
+    }
+    .warning-box li { margin-bottom: 6px; }
+    .warning-box strong { color: var(--gold-light); }
+    .green-bold { color: var(--green-bright); font-weight: 600; }
+
+    /* Form section */
+    .form-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 32px;
+    }
+    .form-section h2 {
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .form-section .form-sub {
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+    .form-group input::placeholder { color: #4A5A4A; }
+    .form-group select option { background: var(--bg); }
+    .form-group .hint {
+      color: var(--text-dim);
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      border-radius: 28px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+    .submit-btn:hover { background: var(--gold-light); }
+    .submit-btn:active { transform: scale(0.98); }
+
+    .form-note {
+      color: var(--text-dim);
+      font-size: 11px;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* Success message */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 32px 20px;
+    }
+    .success-msg .check { font-size: 48px; margin-bottom: 12px; }
+    .success-msg h3 { color: var(--gold); font-size: 20px; margin-bottom: 8px; }
+    .success-msg p { color: var(--green); font-size: 14px; }
+
+    /* Dua */
+    .dua {
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .dua .arabic {
+      color: var(--gold);
+      font-size: 22px;
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      margin-bottom: 4px;
+    }
+    .dua .transliteration {
+      color: var(--green);
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 24px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+    .footer p { color: var(--text-dim); font-size: 12px; }
+    .footer a { color: var(--gold); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-icon">&#127769;</div>
+      <h1>RamadanTracker26</h1>
+      <p class="tagline">Your Complete Ramadan Companion</p>
+      <p class="sub">Ramadan 1447 / 2026</p>
+    </div>
+
+    <!-- Intro -->
+    <div class="intro">
+      <p class="greeting">Assalamu Alaikum! Ramadan Mubarak! &#128588;</p>
+      <p>I've built a Ramadan companion app to help us make the most of this blessed month — and I need your support to bring it to the Google Play Store.</p>
+    </div>
+
+    <!-- Features -->
+    <div class="section">
+      <p class="section-label">&#10024; KEY FEATURES</p>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-icon">&#127769;</div>
+          <h3>30-Day Fasting Tracker</h3>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">&#128332;</div>
+          <h3>5 Daily Prayers & Live Times</h3>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">&#128214;</div>
+          <h3>Quran Planner & Tracker</h3>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">&#128220;</div>
+          <h3>Tafsir & Hifz Tracker</h3>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">&#128276;</div>
+          <h3>Smart Prayer Notifications</h3>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">&#128101;</div>
+          <h3>Family Multi-User</h3>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">&#129518;</div>
+          <h3>Zakah Calculator</h3>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">&#127909;</div>
+          <h3>Live Makkah & Madinah</h3>
+        </div>
+      </div>
+
+      <div class="all-features">
+        <span>&#128200; Stats Dashboard</span>
+        <span>&#128588; Dhikr Counter</span>
+        <span>&#128591; Essential Duas</span>
+        <span>&#128154; Good Deed of the Day</span>
+        <span>&#11088; Laylat al-Qadr Guide</span>
+        <span>&#128172; 30 WhatsApp Posts</span>
+        <span>&#127869; Iftar & Sehri Tips</span>
+        <span>&#127769; Dark & Light Theme</span>
+      </div>
+    </div>
+
+    <!-- Help section -->
+    <div class="help-box">
+      <h2>&#127919; I Need Your Help!</h2>
+      <p>
+        To publish this app on Google Play Store, Google requires at least
+        <span class="highlight">20 testers</span> who use the app for
+        <span class="highlight">14 continuous days</span>.
+      </p>
+      <p>
+        Ramadan is the perfect time — it's exactly 30 days! Just install the app,
+        use it daily to track your ibadah, and you'll be helping bring this app
+        to the entire Ummah on Play Store, In Sha Allah.
+      </p>
+    </div>
+
+    <!-- Warning -->
+    <div class="warning-box">
+      <h3>&#9888;&#65039; Important — Please Read</h3>
+      <ul>
+        <li>The 14 days must be <strong>continuous</strong> — if anyone uninstalls before that, the count resets</li>
+        <li>Just <strong>use the app daily</strong> to track your Ramadan ibadah — it's built for exactly that!</li>
+        <li>It's <span class="green-bold">completely FREE</span>, no ads, and no account needed</li>
+        <li>All data stays on your device — nothing is sent anywhere</li>
+      </ul>
+    </div>
+
+    <!-- Form -->
+    <div class="form-section" id="form-section">
+      <h2>&#129309; Join as a Tester</h2>
+      <p class="form-sub">Share your details and I'll send you the download link</p>
+
+      <form id="tester-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Gmail ID (used on Play Store) *</label>
+          <input type="email" id="email" name="email" placeholder="yourname@gmail.com" required>
+          <p class="hint">This must be the Gmail you use on Google Play Store</p>
+        </div>
+
+        <div class="form-group">
+          <label for="phone_type">Phone Type *</label>
+          <select id="phone_type" name="phone_type" required>
+            <option value="" disabled selected>Select your phone type</option>
+            <option value="Android">Android</option>
+            <option value="iPhone">iPhone (not supported yet)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback">Any message or feedback (optional)</label>
+          <input type="text" id="feedback" name="feedback" placeholder="e.g. Excited to try it!">
+        </div>
+
+        <input type="hidden" name="_subject" value="New RamadanTracker26 Tester Signup!">
+        <input type="hidden" name="_template" value="table">
+
+        <button type="submit" class="submit-btn">&#128233; Join Testing — Send My Details</button>
+        <p class="form-note">Your email is only used to add you to Play Store testing — nothing else.</p>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        <div class="check">&#9989;</div>
+        <h3>JazakAllahu Khairan!</h3>
+        <p>Your details have been received. I'll add you as a tester and send the download link to your Gmail soon, In Sha Allah!</p>
+      </div>
+    </div>
+
+    <!-- Dua -->
+    <div class="dua">
+      <p class="arabic">&#1580;&#1586;&#1575;&#1603;&#1605; &#1575;&#1604;&#1604;&#1607; &#1582;&#1610;&#1585;&#1575;&#1611;</p>
+      <p class="transliteration">JazakumAllahu Khairan — May Allah reward you with goodness</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Built with Iman & Ikhlas by <strong style="color:#8AAA8A;">Shaid</strong></p>
+      <p style="margin-top:6px;"><a href="mailto:shaid@shaid360.com">shaid@shaid360.com</a></p>
+    </div>
+
+  </div>
+
+  <script>
+    // Generate stars
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 60 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      star.style.width = star.style.height = (Math.random() * 2 + 1) + 'px';
+      starsEl.appendChild(star);
+    }
+
+    // Form submission
+    const form = document.getElementById('tester-form');
+    const successMsg = document.getElementById('success-msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const btn = form.querySelector('.submit-btn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Network error — try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
