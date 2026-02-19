@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramadan Barakah 1447 — Feature Showcase</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap');
+
+  :root {
+    --bg: #040A04;
+    --bg2: #060E06;
+    --card: #0B160B;
+    --card2: #0D1F0D;
+    --border: #1E3A1E;
+    --gold: #C9A84C;
+    --gold-light: #D4B95E;
+    --green: #4ECB71;
+    --blue: #A0C4E8;
+    --orange: #E8A030;
+    --red: #E05A30;
+    --text: #E8E8E8;
+    --text2: #8AAA8A;
+    --text3: #5A7A5A;
+    --text4: #3A5A3A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(ellipse at 50% 30%, #0D1F0D 0%, var(--bg) 70%);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--text2);
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  .hero .arabic {
+    font-family: 'Amiri', serif;
+    font-size: clamp(18px, 3vw, 28px);
+    color: var(--gold);
+    opacity: 0.6;
+    direction: rtl;
+    margin: 16px 0 30px;
+  }
+  .hero .tagline {
+    font-size: clamp(13px, 1.8vw, 16px);
+    color: var(--text3);
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  .badge-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .badge-gold { color: var(--gold); border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.08); }
+  .badge-green { color: var(--green); border-color: rgba(78,203,113,0.3); background: rgba(78,203,113,0.08); }
+  .badge-blue { color: var(--blue); border-color: rgba(160,196,232,0.3); background: rgba(160,196,232,0.08); }
+
+  /* ── Phone Mockup ── */
+  .phone-row {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 20px;
+  }
+  .phone {
+    width: 220px;
+    border-radius: 28px;
+    border: 3px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.05);
+    transition: transform 0.3s ease;
+  }
+  .phone:hover { transform: translateY(-8px); }
+  .phone.hero-phone { width: 280px; }
+  .phone.side-phone { width: 200px; opacity: 0.85; }
+  .phone img { width: 100%; display: block; }
+  .phone-label {
+    text-align: center;
+    color: var(--text3);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  /* ── Section ── */
+  .section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .section-header .icon { font-size: 40px; margin-bottom: 12px; }
+  .section-header h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .section-header p {
+    color: var(--text2);
+    font-size: 14px;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── Feature Grid ── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+  .feature-card:hover {
+    border-color: rgba(201,168,76,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .feature-card .emoji { font-size: 28px; margin-bottom: 12px; }
+  .feature-card h3 {
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .feature-card p {
+    color: var(--text2);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .feature-card .tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tag-core { color: var(--green); background: rgba(78,203,113,0.1); }
+  .tag-new { color: var(--orange); background: rgba(232,160,48,0.1); }
+  .tag-share { color: var(--blue); background: rgba(160,196,232,0.1); }
+  .tag-internet { color: var(--red); background: rgba(224,90,48,0.1); }
+
+  /* ── Highlight Row ── */
+  .highlight-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin: 60px 0;
+  }
+  .highlight-row.reverse { direction: rtl; }
+  .highlight-row.reverse > * { direction: ltr; }
+  .highlight-text h3 {
+    color: var(--gold);
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .highlight-text p {
+    color: var(--text2);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .highlight-text ul {
+    list-style: none;
+    padding: 0;
+  }
+  .highlight-text ul li {
+    color: var(--text2);
+    font-size: 13px;
+    padding: 6px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+  .highlight-text ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .highlight-phone {
+    display: flex;
+    justify-content: center;
+  }
+  .highlight-phone .phone { width: 260px; }
+
+  /* ── Stats Banner ── */
+  .stats-banner {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 0;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  .stat-item .label {
+    font-size: 11px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 60px 20px 40px;
+    border-top: 1px solid var(--border);
+  }
+  .footer .arabic {
+    font-family: 'Amiri', serif;
+    font-size: 20px;
+    color: var(--gold);
+    opacity: 0.5;
+    direction: rtl;
+    margin-bottom: 16px;
+  }
+  .footer p {
+    color: var(--text3);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .highlight-row { grid-template-columns: 1fr; }
+    .highlight-row.reverse { direction: ltr; }
+    .highlight-phone { order: -1; }
+    .phone-row .phone.side-phone { width: 150px; }
+    .phone-row .phone.hero-phone { width: 200px; }
+    .stats-banner { gap: 24px; }
+    .stat-item .num { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════ HERO — SPLASH ══════════════════════ -->
+<section class="hero">
+  <div class="phone-row" style="margin-bottom: 40px;">
+    <div>
+      <div class="phone hero-phone" style="border-color: rgba(201,168,76,0.3);">
+        <img src="1.webp" alt="Ramadan Barakah 1447 — Splash Screen">
+      </div>
+    </div>
+  </div>
+
+  <h1>Ramadan Barakah 1447</h1>
+  <p class="subtitle">Your Complete Ramadan Companion — Ramadan 2026</p>
+  <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+  <p class="tagline">
+    Track your daily ibadah, view charts &amp; achievements, access live prayer times,
+    read Quran with a personalized completion planner, count dhikr, learn from scholars,
+    calculate Zakah, share beautiful image cards, and stay connected with the spirit of Ramadan — all in one app.
+  </p>
+  <div class="badge-row">
+    <span class="badge badge-gold">25+ Features</span>
+    <span class="badge badge-green">100% Offline</span>
+    <span class="badge badge-blue">No Account Needed</span>
+    <span class="badge badge-gold">Made in India 🇮🇳</span>
+  </div>
+</section>
+
+<!-- ══════════════════════ STATS BANNER ══════════════════════ -->
+<div class="stats-banner">
+  <div class="stat-item"><div class="num">30</div><div class="label">Days Tracked</div></div>
+  <div class="stat-item"><div class="num">5</div><div class="label">Daily Prayers</div></div>
+  <div class="stat-item"><div class="num">114</div><div class="label">Quran Surahs</div></div>
+  <div class="stat-item"><div class="num">12</div><div class="label">Achievements</div></div>
+  <div class="stat-item"><div class="num">11</div><div class="label">Scholar Lectures</div></div>
+  <div class="stat-item"><div class="num">30</div><div class="label">Daily Hadiths</div></div>
+</div>
+
+<!-- ══════════════════════ DAILY TRACKER ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">📅</div>
+    <h2>Daily Ibadah Tracker</h2>
+    <p>Log fasting, 5 prayers, Taraweeh, Quran pages, Tafsir, Hifz &amp; good deeds for every day of Ramadan</p>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-text">
+      <h3>Every Day, One Card</h3>
+      <p>Each Ramadan day has its own dedicated tracker card. Tap to log, swipe to navigate. Multi-user family support built in.</p>
+      <ul>
+        <li>One-tap fasting toggle</li>
+        <li>Mark each of the 5 daily prayers (Fajr → Isha)</li>
+        <li>Track nightly Taraweeh prayers</li>
+        <li>Log Quran pages with quick-add buttons (+1, +4, +8, +20)</li>
+        <li>Tafsir study &amp; Hifz memorization tracking</li>
+        <li>Record good deeds with notes</li>
+        <li>Swipe mode or scroll mode — your choice</li>
+        <li>Add family members &amp; switch profiles</li>
+      </ul>
+    </div>
+    <div class="highlight-phone">
+      <div class="phone"><img src="2.webp" alt="Daily Tracker"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PRAYER & STREAMS ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">🕌</div>
+    <h2>Prayer Times &amp; Live Streams</h2>
+    <p>Accurate prayer times for your city with live Makkah &amp; Madinah streams</p>
+  </div>
+
+  <div class="highlight-row reverse">
+    <div class="highlight-text">
+      <h3>Stay Connected</h3>
+      <p>Get Sehri &amp; Iftar times for your city via the Aladhan API, watch live streams from Masjid Al-Haram and Masjid Al-Nabawi, and set per-prayer notification reminders.</p>
+      <ul>
+        <li>Live Makkah &amp; Madinah streams (in-app or YouTube)</li>
+        <li>Prayer times by city, country &amp; calculation method</li>
+        <li>Pull-to-refresh for latest times</li>
+        <li>Offline prayer time caching</li>
+        <li>Live Iftar countdown timer on home screen</li>
+        <li>Per-prayer reminders with custom offset</li>
+        <li>Sehri wake-up alarm</li>
+      </ul>
+      <p style="margin-top: 12px;"><span style="color: var(--orange); font-size: 11px; font-weight: 600;">⚡ Internet required for prayer times &amp; live streams</span></p>
+    </div>
+    <div class="highlight-phone">
+      <div class="phone"><img src="3.webp" alt="Prayer Times &amp; Live Streams"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ MORE FEATURES GRID ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">✨</div>
+    <h2>Explore 25+ Features</h2>
+    <p>Everything you need for a blessed Ramadan — all accessible from the "More" screen</p>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-phone">
+      <div class="phone"><img src="4.webp" alt="More Features"></div>
+    </div>
+    <div class="highlight-text">
+      <h3>One Tap Away</h3>
+      <p>The "More" tab opens a grid of 15+ features — from Quran &amp; Quran Planner to Lectures, Dhikr, Kitchen, Duas, Zakah, Eid, and more.</p>
+      <ul>
+        <li>📖 Quran — Browse &amp; read all 114 Surahs</li>
+        <li>📋 Quran Plan — Personalized completion planner</li>
+        <li>🎓 Lectures — 11 curated scholar videos</li>
+        <li>📿 Dhikr — Tap counter with haptic feedback</li>
+        <li>🍽️ Kitchen — 8 Iftar recipes &amp; 7 Sehri tips</li>
+        <li>🕊️ Duas — Essential Ramadan supplications</li>
+        <li>🤲 Zakah &amp; Zakat al-Fitr calculator</li>
+        <li>🌙 Laylat al-Qadr — 5 odd nights guide</li>
+        <li>💬 WhatsApp Posts — 30 daily messages</li>
+        <li>🎉 Eid — Countdown, Takbeer &amp; greetings</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ STATS & ACHIEVEMENTS ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">📊</div>
+    <h2>Stats &amp; Achievements</h2>
+    <p>See your Ramadan journey come alive with charts, streaks &amp; unlockable badges</p>
+  </div>
+
+  <div class="highlight-row reverse">
+    <div class="highlight-text">
+      <h3>Your Ramadan Dashboard</h3>
+      <p>A comprehensive stats screen with progress cards, streak tracking, charts, and a family leaderboard. Earn achievements as you progress.</p>
+      <ul>
+        <li>Days fasted, full prayer days, Quran pages, good deeds</li>
+        <li>Current fasting streak counter 🔥</li>
+        <li>Quran progress ring (pages / 604)</li>
+        <li>Daily prayer completion chart</li>
+        <li>12 unlockable achievement badges</li>
+        <li>Family leaderboard — compare across members</li>
+        <li>Share report card as beautiful image</li>
+        <li>Generate &amp; share PDF report card with grade</li>
+      </ul>
+    </div>
+    <div class="highlight-phone">
+      <div class="phone"><img src="03_stats.png" alt="Stats Dashboard"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ QURAN PLANNER ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">📋</div>
+    <h2>Quran Completion Planner</h2>
+    <p>A personalized plan to finish the Quran — distributed across your daily prayers</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="emoji">🎯</div>
+      <h3>5-Step Setup Wizard</h3>
+      <p>Choose your Khatm goal (0.5×, 1×, 2×, or 3×), set the number of days, pick total pages, set your reading speed, and distribute pages across 5 daily prayers with adjustable weights.</p>
+      <span class="tag tag-new">New in v1.1</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">📊</div>
+      <h3>Live Dashboard</h3>
+      <p>Overall progress bar, today's reading target with estimated time, circular completion ring for prayers done, and an "On track" or "Behind by X pages" status indicator.</p>
+      <span class="tag tag-new">New in v1.1</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">📅</div>
+      <h3>30-Day Color Grid</h3>
+      <p>Scrollable table showing per-prayer page breakdown for every day. Green for completed, orange for missed, highlighted for today. Tap any slot to mark done.</p>
+      <span class="tag tag-new">New in v1.1</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">⚖️</div>
+      <h3>Smart Distribution</h3>
+      <p>Pages distributed across Fajr, Zuhr, Asr, Maghrib &amp; Isha using adjustable weights. You control the balance — read more after Maghrib, less after Fajr.</p>
+      <span class="tag tag-new">New in v1.1</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ LECTURES ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">🎓</div>
+    <h2>Ramadan Lectures</h2>
+    <p>Curated talks by 3 world-class scholars — track your watching progress</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card" style="border-color: rgba(201,168,76,0.3);">
+      <div class="emoji">🏅</div>
+      <h3>Mufti Ismail Menk</h3>
+      <p>2 powerful Ramadan lectures — mindset transformation to ending with gratitude. Popular global scholar known for "Boost with Mufti Menk".</p>
+      <span class="tag tag-core">2 Videos</span>
+    </div>
+    <div class="feature-card" style="border-color: rgba(78,203,113,0.3);">
+      <div class="emoji">📗</div>
+      <h3>Nouman Ali Khan</h3>
+      <p>5 Quran-focused talks — Ramadan prep guides, the power of Bismillah, and "Amazed by the Quran". Deep, easy-to-follow explanations.</p>
+      <span class="tag tag-core">5 Videos</span>
+    </div>
+    <div class="feature-card" style="border-color: rgba(160,196,232,0.3);">
+      <div class="emoji">🎙️</div>
+      <h3>Dr. Omar Suleiman</h3>
+      <p>4 Yaqeen Institute videos — from crushing your ego to understanding the divine names. Powerful lectures on self-reform &amp; spirituality.</p>
+      <span class="tag tag-core">4 Videos</span>
+    </div>
+  </div>
+  <div class="feature-card" style="text-align: center; margin-top: 20px;">
+    <p>Track videos as <strong style="color:var(--text3);">Not watched</strong> → <strong style="color:var(--orange);">In progress</strong> → <strong style="color:var(--green);">Completed</strong> &nbsp;|&nbsp; Watch in-app or open in YouTube &nbsp;|&nbsp; Collapsible scholar cards with bios</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ ALL v1.1 FEATURES ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">🆕</div>
+    <h2>What's New in v1.1.0</h2>
+    <p>A massive update packed with features to maximize your Ramadan</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="emoji">📊</div>
+      <h3>Stats &amp; Charts</h3>
+      <p>Bar charts, line charts, progress rings &amp; family leaderboard to visualize your entire Ramadan journey.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🏆</div>
+      <h3>12 Achievements</h3>
+      <p>Unlockable badges — fasting streaks, prayer warrior, Quran milestones, good deeds champion &amp; more.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">⏱️</div>
+      <h3>Iftar Countdown</h3>
+      <p>Live countdown timer on the home screen during fasting hours — counts down to the moment you break your fast.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">📜</div>
+      <h3>Hadith of the Day</h3>
+      <p>A different authentic hadith for each of the 30 days, displayed on the home screen with source attribution.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🌃</div>
+      <h3>Taraweeh Tracker</h3>
+      <p>Track nightly Taraweeh prayers alongside your daily ibadah. See Taraweeh stats in the dashboard.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🤲</div>
+      <h3>Zakat al-Fitr</h3>
+      <p>Calculate Zakat al-Fitr with per-family-member support, alongside the full Zakah calculator.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🔔</div>
+      <h3>Smart Notifications</h3>
+      <p>Per-prayer reminders with customizable offset (5-60 min), Sehri wake-up alarm, and evening logging reminder.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">👆</div>
+      <h3>Swipe Mode</h3>
+      <p>Swipe between days or scroll — choose your preferred tracker layout for navigating the 30 days.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🖼️</div>
+      <h3>Share as Image</h3>
+      <p>Share daily progress, report card, WhatsApp posts &amp; Eid greetings as professionally designed image cards.</p>
+      <span class="tag tag-share">Shareable</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">📄</div>
+      <h3>PDF Report Card</h3>
+      <p>Generate a beautiful PDF with your grade, scores &amp; achievements — share with family or keep as a Ramadan memory.</p>
+      <span class="tag tag-share">Shareable</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🎉</div>
+      <h3>Eid Screen</h3>
+      <p>Eid countdown, Takbeer with translation, 8-item Sunnah checklist, greeting generator with custom "From" name, and post-Ramadan goals.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">💾</div>
+      <h3>Backup &amp; Export</h3>
+      <p>Export/import your data as JSON. Share backups with family. Cache prayer times for offline use.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🔄</div>
+      <h3>Pull to Refresh</h3>
+      <p>Swipe down to refresh prayer times instantly. No more stale data.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🚀</div>
+      <h3>App Walkthrough</h3>
+      <p>Swipeable onboarding tour of all features — shown on first launch, replayable anytime from About.</p>
+      <span class="tag tag-new">New</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ CORE FEATURES ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">💎</div>
+    <h2>Core Features</h2>
+    <p>The foundation of your Ramadan experience</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="emoji">📖</div>
+      <h3>Read Quran</h3>
+      <p>Browse all 114 Surahs with Arabic names, search by English or Arabic, view Makki/Madani badges, and read on Quran.com in-app.</p>
+      <span class="tag tag-core">Core</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">📿</div>
+      <h3>Dhikr Counter</h3>
+      <p>Tap-to-count Adhkar with haptic feedback — SubhanAllah (33), Alhamdulillah (33), Allahu Akbar (33), and 3 more with daily targets.</p>
+      <span class="tag tag-core">Core</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🕊️</div>
+      <h3>Duas Collection</h3>
+      <p>Essential Ramadan duas in Arabic with transliteration &amp; English meaning. Swipeable card carousel with copy-to-clipboard.</p>
+      <span class="tag tag-core">Core</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🌙</div>
+      <h3>Laylat al-Qadr Guide</h3>
+      <p>Dedicated screen for the 5 odd nights (21, 23, 25, 27, 29) with ibadah checklist, Quranic references, and the Qadr dua.</p>
+      <span class="tag tag-core">Core</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🍽️</div>
+      <h3>Kitchen &amp; Recipes</h3>
+      <p>8 Iftar recipes (Samosas, Biryani, Haleem &amp; more) plus 7 Sehri tips — each with YouTube video links.</p>
+      <span class="tag tag-core">Core</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">💬</div>
+      <h3>WhatsApp Posts</h3>
+      <p>30 daily shareable messages — one for each day. Filter by "All", "Today", or "Qadr Nights". Share as beautiful image cards.</p>
+      <span class="tag tag-share">Shareable</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">👨‍👩‍👧‍👦</div>
+      <h3>Multi-User Family</h3>
+      <p>Add family members and switch profiles. Each member gets their own tracker data, stats &amp; achievements.</p>
+      <span class="tag tag-core">Core</span>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🌗</div>
+      <h3>Dark &amp; Light Mode</h3>
+      <p>Beautiful Islamic dark theme with gold accents, or a clean light mode. Toggle from the top bar anytime.</p>
+      <span class="tag tag-core">Core</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PRIVACY ══════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="icon">🔒</div>
+    <h2>Privacy First</h2>
+    <p>Your data stays on your device — always</p>
+  </div>
+  <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+    <div class="feature-card" style="text-align:center;">
+      <div class="emoji">📱</div>
+      <h3>100% Local</h3>
+      <p>All data stored on your device</p>
+    </div>
+    <div class="feature-card" style="text-align:center;">
+      <div class="emoji">☁️</div>
+      <h3>No Account</h3>
+      <p>No sign-up, no cloud, no tracking</p>
+    </div>
+    <div class="feature-card" style="text-align:center;">
+      <div class="emoji">📴</div>
+      <h3>Works Offline</h3>
+      <p>Except prayer times &amp; YouTube</p>
+    </div>
+    <div class="feature-card" style="text-align:center;">
+      <div class="emoji">💾</div>
+      <h3>Your Backups</h3>
+      <p>Export &amp; import JSON anytime</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="footer">
+  <div class="divider" style="margin-bottom: 30px;"></div>
+  <p class="arabic">رَبَّنَا تَقَبَّلْ مِنَّا ۖ إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</p>
+  <p style="color: var(--text2); font-size: 13px; font-style: italic; margin-bottom: 20px;">
+    "Our Lord, accept from us. Indeed, You are the All-Hearing, the All-Knowing."
+  </p>
+  <p>
+    Built with ❤️ by <strong style="color: var(--gold);">Shaid</strong> for the Ummah<br>
+    This app is a Sadaqah Jariyah — a continuous charity<br><br>
+    <a href="https://play.google.com/store/apps/details?id=com.shaai.ramadan_tracker">Get it on Google Play</a>
+  </p>
+  <p style="margin-top: 20px; color: var(--text4); font-size: 10px;">
+    Ramadan Barakah 1447 &bull; Version 1.1.0 &bull; Made in India 🇮🇳
+  </p>
+</footer>
+
+</body>
+</html>
